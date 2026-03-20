@@ -5,7 +5,13 @@
 
 [functions]
   directory = "functions"
-  included_files = ["templates/**", "data/**"]
+  included_files = [
+    "app.py",
+    "config.py",
+    "data/**",
+    "utils/**",
+    "templates/**"
+  ]
 
 [[redirects]]
   from = "/static/*"
@@ -14,5 +20,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/app/:splat"
+  to = "/.netlify/functions/main/:splat"
   status = 200
