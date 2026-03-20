@@ -10,8 +10,8 @@
       <a class="{% if request_path == url_for('index') %}active{% endif %}" href="{{ url_for('index') }}">Hem</a>
       <a class="{% if request_path == url_for('about') %}active{% endif %}" href="{{ url_for('about') }}">Om oss</a>
       <a class="{% if request_path.startswith('/tjanster') %}active{% endif %}" href="{{ url_for('services_page') }}">Tjänster</a>
-      <a class="{% if request_path == url_for('references_page') %}active{% endif %}" href="{{ url_for('references_page') }}">Referenser</a>
-      <a class="{% if request_path == url_for('reviews_page') %}active{% endif %}" href="{{ url_for('reviews_page') }}">Recensioner</a>
+      {# <a class="{% if request_path == url_for('references_page') %}active{% endif %}" href="{{ url_for('references_page') }}">Referenser</a> #}
+      {# <a class="{% if request_path == url_for('reviews_page') %}active{% endif %}" href="{{ url_for('reviews_page') }}">Recensioner</a> #}
       <a class="{% if request_path == url_for('faq') %}active{% endif %}" href="{{ url_for('faq') }}">Vanliga frågor</a>
       <a class="{% if request_path == url_for('contact') %}active{% endif %}" href="{{ url_for('contact') }}">Kontakt</a>
       <a class="button button-small" href="{{ url_for('quote') }}">Begär offert</a>
