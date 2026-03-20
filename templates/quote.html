@@ -23,7 +23,7 @@
       <p><strong>Vi arbetar i:</strong> {{ locations|join(', ') }}</p>
     </div>
 
-    <form class="contact-form" method="post" {% if static_export %}name="quote" netlify data-netlify="true" netlify-honeypot="website" action="/tack/"{% endif %} novalidate>
+    <form class="contact-form" method="post" {% if static_export %}name="quote" netlify data-netlify="true" netlify-honeypot="website" action="/tack/index.html"{% endif %} novalidate>
       {% if static_export %}
         <input type="hidden" name="form-name" value="quote">
       {% endif %}
