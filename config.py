@@ -23,6 +23,8 @@ class Config:
     SERVICE_AREA = "Uddevalla med omnejd"
     DEFAULT_EMAIL = os.getenv("CONTACT_EMAIL", "info@gsonallservice.se")
     ORG_NUMBER = os.getenv("ORG_NUMBER", "559000-0000")
+    SITE_URL = os.getenv("SITE_URL", "").rstrip("/")
+    STATIC_EXPORT = os.getenv("STATIC_EXPORT", "0") == "1"
     SUBMISSIONS_DIR = _resolve_submissions_dir()
     CONTACT_SUBMISSIONS_FILE = SUBMISSIONS_DIR / "contact_submissions.csv"
     QUOTE_SUBMISSIONS_FILE = SUBMISSIONS_DIR / "quote_submissions.csv"

@@ -8,8 +8,8 @@
     <meta property="og:title" content="{% block og_title %}{{ company_name }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Flexibel hjälp för hem, fastighet och företag i Uddevalla med omnejd.{% endblock %}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ request.url }}">
-    <link rel="canonical" href="{{ request.url }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <link rel="canonical" href="{{ canonical_url }}">
     <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
@@ -21,7 +21,7 @@
         "areaServed": "{{ service_area }}",
         "email": "{{ default_email }}",
         "telephone": "{{ contacts[0].phone }}",
-        "url": "{{ request.url_root.rstrip('/') }}",
+        "url": "{{ site_root }}",
         "identifier": "{{ org_number }}"
       }
     </script>

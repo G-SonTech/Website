@@ -49,6 +49,9 @@ def create_app() -> Flask:
 
     @app.context_processor
     def inject_site_data():
+        site_url = app.config.get("SITE_URL", "")
+        canonical_url = f"{site_url}{request.path}" if site_url else request.url
+        site_root = site_url or request.url_root.rstrip("/")
         return {
             "company_name": app.config["COMPANY_NAME"],
             "service_area": app.config["SERVICE_AREA"],
@@ -60,6 +63,9 @@ def create_app() -> Flask:
             "current_year": current_year(),
             "org_number": app.config["ORG_NUMBER"],
             "request_path": request.path,
+            "canonical_url": canonical_url,
+            "site_root": site_root,
+            "static_export": app.config.get("STATIC_EXPORT", False),
         }
 
     @app.template_filter("stars")
