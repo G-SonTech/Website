@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}{{ company_name }} | Allservice i Uddevalla med omnejd{% endblock %}
+{% block meta_description %}G-Son Allservice AB erbjuder pålitlig allservice, underhåll, fastighetsservice och praktisk hjälp i Uddevalla med omnejd för privatpersoner, företag och föreningar.{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">Pålitlig allservice i Uddevalla med omnejd</p>
+      <h1>Flexibel hjälp för hem, fastighet och företag.</h1>
+      <p class="lead">G-Son Allservice AB hjälper privatpersoner, företag, fastighetsägare och bostadsrättsföreningar med praktiska uppdrag, underhåll och service som blir ordentligt gjort.</p>
+      <div class="cta-row">
+        <a class="button" href="{{ url_for('quote') }}">Begär offert</a>
+        <a class="button button-secondary" href="{{ url_for('contact') }}">Kontakta oss</a>
+      </div>
+      <ul class="hero-points">
+        <li>Lokal närvaro i Uddevalla, Ljungskile, Henån och närliggande orter</li>
+        <li>Tydlig dialog, snabb återkoppling och noggrant utfört arbete</li>
+        <li>För privatpersoner, företag, fastighetsägare och BRF</li>
+      </ul>
+    </div>
+    <aside class="hero-card">
+      <h2>Direktkontakt</h2>
+      {% for person in contacts %}
+        <div class="contact-person">
+          <p><strong>{{ person.name }}</strong></p>
+          <p><a href="tel:{{ person.phone|replace(' ', '') }}">{{ person.phone }}</a></p>
+          <p><a href="mailto:{{ person.email }}">{{ person.email }}</a></p>
+        </div>
+      {% endfor %}
+      <p><strong>Verksamhetsområde:</strong> {{ service_area }}</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container section-heading">
+    <p class="eyebrow">Om företaget</p>
+    <h2>Praktiska lösningar för både små och stora behov</h2>
+    <p>Vi arbetar med allservice som gör vardagen enklare och fastigheter mer välskötta. Uppdragen varierar, men arbetssättet är detsamma: tydlighet, ansvar och service som håller över tid.</p>
+  </div>
+  <div class="container card-grid">
+    {% for service in services %}
+      <article class="card">
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.summary }}</p>
+        <p class="muted">{{ service.benefit }}</p>
+        <a class="text-link" href="{{ url_for('service_detail', slug=service.slug) }}">Läs mer om tjänsten</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container two-column">
+    <div>
+      <p class="eyebrow">Varför välja G-Son</p>
+      <h2>En lokal partner som är lätt att anlita och lätt att lita på</h2>
+      <p>För många kunder handlar ett bra samarbete inte bara om själva arbetet, utan om att få tydliga besked, snabb återkoppling och ett resultat som faktiskt fungerar i vardagen.</p>
+    </div>
+    <div class="check-list">
+      <div><h3>Pålitlighet</h3><p>Vi håller vad vi lovar och återkopplar när något behöver följas upp.</p></div>
+      <div><h3>Flexibilitet</h3><p>Vi hjälper till med både punktinsatser och löpande uppdrag.</p></div>
+      <div><h3>Lokalkännedom</h3><p>Vi arbetar i Uddevalla med omnejd och vet hur behoven ser ut i området.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container section-heading">
+    <p class="eyebrow">Vanliga uppdrag</p>
+    <h2>Så ser hjälpen ofta ut i praktiken</h2>
+  </div>
+  <div class="container promise-grid">
+    <article class="promise-card"><h3>Mindre reparationer</h3><p>Åtgärder som snabbt förbättrar funktion, ordning och helhetsintryck.</p></article>
+    <article class="promise-card"><h3>Skötsel av fastighet</h3><p>Löpande service i entréer, gemensamma ytor och andra miljöer som behöver hållas efter.</p></article>
+    <article class="promise-card"><h3>Praktisk hjälp vid projekt</h3><p>Montering, bortforsling och andra insatser som får projekt att röra sig framåt.</p></article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-column">
+    <div>
+      <p class="eyebrow">Vi arbetar i Uddevalla med omnejd</p>
+      <h2>Lokal hjälp även i närliggande orter</h2>
+      <p>Vi hjälper kunder i Uddevalla och på flera orter i närområdet, bland annat Ljungskile, Henån, Vänersborg, Trollhättan, Munkedal, Färgelanda, Stenungsund, Orust och Bokenäs. Den lokala närvaron gör det enklare att vara tillgänglig och flexibel när behov uppstår.</p>
+    </div>
+    <div class="location-cloud">
+      {% for location in locations %}
+        <span>{{ location }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container section-heading">
+    <p class="eyebrow">Referenser</p>
+    <h2>Exempel på tidigare typer av uppdrag</h2>
+  </div>
+  <div class="container card-grid">
+    {% for reference in references %}
+      <article class="card">
+        <p class="card-tag">{{ reference.assignment_type }}</p>
+        <h3>{{ reference.title }}</h3>
+        <p><strong>Ort:</strong> {{ reference.location }}</p>
+        <p>{{ reference.description }}</p>
+        <p class="muted">{{ reference.result }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container section-heading">
+    <p class="eyebrow">Recensioner</p>
+    <h2>Trygghet bygger på hur samarbetet upplevs</h2>
+  </div>
+  <div class="container card-grid">
+    {% for review in reviews %}
+      <article class="card review-card">
+        <p class="rating">{{ review.rating|stars }}</p>
+        <p>{{ review.quote }}</p>
+        <p><strong>{{ review.name }}</strong>, {{ review.location }}</p>
+        <p class="muted">{{ review.assignment_type }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% with
+  title="Berätta vad du behöver hjälp med",
+  text="Skicka en offertförfrågan eller kontakta oss direkt så återkommer vi med ett tydligt nästa steg.",
+  primary_url=url_for('quote'),
+  primary_label="Begär offert",
+  secondary_url=url_for('contact'),
+  secondary_label="Kontakta oss"
+%}
+  {% include "partials/cta_banner.html" %}
+{% endwith %}
+{% endblock %}

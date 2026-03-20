@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Begär offert | {{ company_name }}{% endblock %}
+{% block meta_description %}Begär offert från G-Son Allservice AB för allservice, fastighetsservice, underhåll och praktisk hjälp i Uddevalla med omnejd.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Offert</p>
+    <h1>Beskriv uppdraget så återkommer vi med nästa steg</h1>
+    <p class="lead">Offertformuläret är anpassat för att ge oss en tydlig bild av vad du behöver hjälp med. Ju mer konkret beskrivning du lämnar, desto lättare blir det att ge rätt återkoppling.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-grid">
+    <div class="info-panel">
+      <h2>Det här är bra att få med</h2>
+      <ul class="plain-list">
+        <li>Vad uppdraget gäller och vilken typ av hjälp som behövs</li>
+        <li>Ort eller område där arbetet ska utföras</li>
+        <li>Om det gäller privatperson, företag eller BRF / fastighet</li>
+        <li>Önskat datum eller ungefärlig tidsram</li>
+      </ul>
+      <p><strong>Vi arbetar i:</strong> {{ locations|join(', ') }}</p>
+    </div>
+
+    <form class="contact-form" method="post" novalidate>
+      <input class="honeypot" type="text" name="website" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="name">Namn</label>
+          <input id="name" name="name" type="text" value="{{ form_data.name }}" required>
+          {% if errors.name %}<small class="error-text">{{ errors.name }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="company">Företag (valfritt)</label>
+          <input id="company" name="company" type="text" value="{{ form_data.company }}">
+        </div>
+        <div class="form-field">
+          <label for="phone">Telefon</label>
+          <input id="phone" name="phone" type="tel" value="{{ form_data.phone }}" required>
+          {% if errors.phone %}<small class="error-text">{{ errors.phone }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="email">E-post</label>
+          <input id="email" name="email" type="email" value="{{ form_data.email }}" required>
+          {% if errors.email %}<small class="error-text">{{ errors.email }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="location">Ort</label>
+          <input id="location" name="location" type="text" value="{{ form_data.location }}" required>
+          {% if errors.location %}<small class="error-text">{{ errors.location }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="service_type">Typ av tjänst</label>
+          <select id="service_type" name="service_type">
+            <option value="">Välj tjänst</option>
+            {% for service_title in service_titles %}
+              <option value="{{ service_title }}" {% if form_data.service_type == service_title %}selected{% endif %}>{{ service_title }}</option>
+            {% endfor %}
+          </select>
+          {% if errors.service_type %}<small class="error-text">{{ errors.service_type }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="timeline">Önskat datum eller tidsram</label>
+          <input id="timeline" name="timeline" type="text" value="{{ form_data.timeline }}" required>
+          {% if errors.timeline %}<small class="error-text">{{ errors.timeline }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="customer_type">Kundtyp</label>
+          <select id="customer_type" name="customer_type">
+            {% for option in customer_types %}
+              <option value="{{ option }}" {% if form_data.customer_type == option %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+          {% if errors.customer_type %}<small class="error-text">{{ errors.customer_type }}</small>{% endif %}
+        </div>
+        <div class="form-field form-field-full">
+          <label for="description">Beskrivning av uppdrag</label>
+          <textarea id="description" name="description" rows="7" required>{{ form_data.description }}</textarea>
+          {% if errors.description %}<small class="error-text">{{ errors.description }}</small>{% endif %}
+        </div>
+        <div class="form-field form-field-full">
+          <label class="checkbox-row" for="privacy_consent">
+            <input id="privacy_consent" name="privacy_consent" type="checkbox" value="accepted" {% if form_data.privacy_consent == 'accepted' %}checked{% endif %}>
+            <span>Jag godkänner att mina uppgifter hanteras enligt <a href="{{ url_for('privacy') }}">integritetspolicyn</a>.</span>
+          </label>
+          {% if errors.privacy_consent %}<small class="error-text">{{ errors.privacy_consent }}</small>{% endif %}
+        </div>
+      </div>
+      <button class="button" type="submit">Skicka offertförfrågan</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

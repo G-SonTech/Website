@@ -1,0 +1,29 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>{{ company_name }}</h2>
+      <p>Lokalt förankrad allservice med fokus på kvalitet, tillgänglighet och tydlig kommunikation i Uddevalla med omnejd.</p>
+    </section>
+    <section>
+      <h2>Kontakt</h2>
+      {% for person in contacts %}
+        <div class="contact-person">
+          <p><strong>{{ person.name }}</strong></p>
+          <p>Telefon: <a href="tel:{{ person.phone|replace(' ', '') }}">{{ person.phone }}</a></p>
+          <p>E-post: <a href="mailto:{{ person.email }}">{{ person.email }}</a></p>
+        </div>
+      {% endfor %}
+    </section>
+    <section>
+      <h2>Snabblänkar</h2>
+      <p><a href="{{ url_for('services_page') }}">Tjänster</a></p>
+      <p><a href="{{ url_for('references_page') }}">Referenser</a></p>
+      <p><a href="{{ url_for('reviews_page') }}">Recensioner</a></p>
+      <p><a href="{{ url_for('quote') }}">Begär offert</a></p>
+      <p><a href="{{ url_for('privacy') }}">Integritetspolicy</a></p>
+    </section>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; {{ current_year }} {{ company_name }}. Organisationsnummer {{ org_number }}. Verksamhetsområde: {{ service_area }}.</p>
+  </div>
+</footer>

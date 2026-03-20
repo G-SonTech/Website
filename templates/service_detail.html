@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}{{ service.title }} | {{ company_name }}{% endblock %}
+{% block meta_description %}Läs mer om {{ service.title|lower }} hos G-Son Allservice AB i Uddevalla med omnejd och se hur tjänsten kan hjälpa privatpersoner, företag och fastighetsägare.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Tjänst</p>
+    <h1>{{ service.title }}</h1>
+    <p class="lead">{{ service.summary }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-column">
+    <div>
+      <h2>Det här kan tjänsten omfatta</h2>
+      <p>{{ service.intro }}</p>
+      <ul class="plain-list">
+        {% for item in service.scope %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <aside class="info-panel">
+      <h2>Vanliga exempel på uppdrag</h2>
+      <ul class="plain-list">
+        {% for item in service.examples %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      <p><strong>Fördel:</strong> {{ service.benefit }}</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container narrow prose">
+    <h2>Lokal hjälp i Uddevalla med omnejd</h2>
+    <p>Vi utför {{ service.title|lower }} för kunder i Uddevalla och närliggande orter. Den lokala närvaron gör det enklare att hålla god dialog, planera smidigt och ge tydlig återkoppling genom hela uppdraget.</p>
+  </div>
+</section>
+
+{% with
+  title="Vill du ha hjälp med " ~ service.title|lower ~ "?",
+  text="Skicka en offertförfrågan eller kontakta oss så återkommer vi med frågor, upplägg eller förslag på nästa steg.",
+  primary_url=url_for('quote', tjanst=service.title),
+  primary_label="Begär offert",
+  secondary_url=url_for('contact'),
+  secondary_label="Kontakta oss"
+%}
+  {% include "partials/cta_banner.html" %}
+{% endwith %}
+{% endblock %}

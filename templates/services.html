@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Tjänster | {{ company_name }}{% endblock %}
+{% block meta_description %}Se vilka tjänster G-Son Allservice AB erbjuder i Uddevalla med omnejd, från fastighetsservice och underhåll till montering, utemiljö och löpande serviceuppdrag.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Tjänster</p>
+    <h1>Allservice för hem, fastighet och verksamhet</h1>
+    <p class="lead">Vi erbjuder tjänster som är lätta att förstå, lätta att beställa och lätta att bygga vidare på när behoven förändras.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container card-grid services-grid">
+    {% for service in services %}
+      <article class="card service-card">
+        <h2>{{ service.title }}</h2>
+        <p>{{ service.summary }}</p>
+        <p><strong>Kundnytta:</strong> {{ service.benefit }}</p>
+        <div class="card-actions">
+          <a class="button button-small" href="{{ url_for('service_detail', slug=service.slug) }}">Läs mer</a>
+          <a class="button button-secondary button-small" href="{{ url_for('quote', tjanst=service.title) }}">Begär offert</a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% with
+  title="Behöver du hjälp att välja rätt tjänst?",
+  text="Beskriv kort vad du behöver så hjälper vi dig att hitta en lämplig lösning eller rätt upplägg för uppdraget.",
+  primary_url=url_for('quote'),
+  primary_label="Begär offert",
+  secondary_url=url_for('contact'),
+  secondary_label="Kontakta oss"
+%}
+  {% include "partials/cta_banner.html" %}
+{% endwith %}
+{% endblock %}

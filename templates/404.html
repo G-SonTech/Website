@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Sidan hittades inte | {{ company_name }}{% endblock %}
+{% block meta_description %}Sidan du söker kunde inte hittas.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">404</p>
+    <h1>Sidan kunde inte hittas</h1>
+    <p class="lead">Länken kan vara fel eller sidan kan ha flyttats. Gå vidare till startsidan eller kontakta oss så hjälper vi dig rätt.</p>
+    <div class="cta-row">
+      <a class="button" href="{{ url_for('index') }}">Till startsidan</a>
+      <a class="button button-secondary" href="{{ url_for('contact') }}">Kontakta oss</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ company_name }} | Allservice i Uddevalla med omnejd{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Pålitlig allservice i Uddevalla med omnejd för privatpersoner, företag, fastighetsägare och bostadsrättsföreningar.{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{{ company_name }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Flexibel hjälp för hem, fastighet och företag i Uddevalla med omnejd.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <link rel="canonical" href="{{ request.url }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{{ company_name }}",
+        "areaServed": "{{ service_area }}",
+        "email": "{{ default_email }}",
+        "telephone": "{{ contacts[0].phone }}",
+        "url": "{{ request.url_root.rstrip('/') }}",
+        "identifier": "{{ org_number }}"
+      }
+    </script>
+  </head>
+  <body>
+    {% include "partials/header.html" %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack container">
+          {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    {% include "partials/footer.html" %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

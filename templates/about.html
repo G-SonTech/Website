@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Om oss | {{ company_name }}{% endblock %}
+{% block meta_description %}Läs om G-Son Allservice AB, ett lokalt allserviceföretag i Uddevalla med fokus på service, kvalitet, ansvar och långsiktiga kundrelationer.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Om oss</p>
+    <h1>Lokalt förankrad service med ett arbetssätt som känns tryggt</h1>
+    <p class="lead">G-Son Allservice AB finns till för kunder som vill ha enkel kontakt, tydliga besked och praktisk hjälp som faktiskt löser vardagens behov.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-column">
+    <div>
+      <h2>Ett företag byggt för verkliga behov</h2>
+      <p>Vi arbetar med uppdrag där service, underhåll och praktisk problemlösning behöver fungera utan onödigt krångel. Det kan handla om mindre åtgärder i en privatbostad, löpande service för ett företag eller återkommande insatser för en fastighet eller förening.</p>
+      <p>Vår styrka ligger i kombinationen av lokal närvaro, tydlig dialog och ett arbetssätt som är noggrant utan att bli tungrott. För oss är det viktigt att kunden känner att det är enkelt att ta kontakt, enkelt att få hjälp och enkelt att förstå nästa steg.</p>
+    </div>
+    <div class="info-panel">
+      <h2>Våra värderingar</h2>
+      <ul class="plain-list">
+        <li>Pålitlighet i både kommunikation och genomförande</li>
+        <li>Tillgänglighet när behov uppstår</li>
+        <li>Noggrannhet i detaljer och helhet</li>
+        <li>Flexibilitet i uppdrag som varierar över tid</li>
+        <li>Personlig service utan omvägar</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container three-up">
+    <article class="mini-card"><h2>Lokal närvaro</h2><p>Vi arbetar i Uddevalla-trakten och bygger relationer genom att vara tillgängliga och nära kunden.</p></article>
+    <article class="mini-card"><h2>Kvalitet i vardagen</h2><p>Resultatet ska hålla, fungera praktiskt och ge ett professionellt helhetsintryck.</p></article>
+    <article class="mini-card"><h2>Plats att växa</h2><p>Sidan och verksamheten är byggda för att kunna utvecklas med fler tjänster, referenser och personal över tid.</p></article>
+  </div>
+</section>
+
+{% with
+  title="Vill du veta mer om hur vi arbetar?",
+  text="Hör av dig om du vill diskutera ett uppdrag, ett löpande behov eller en offertförfrågan.",
+  primary_url=url_for('contact'),
+  primary_label="Kontakta oss",
+  secondary_url=url_for('quote'),
+  secondary_label="Begär offert"
+%}
+  {% include "partials/cta_banner.html" %}
+{% endwith %}
+{% endblock %}

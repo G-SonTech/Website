@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Kontakt | {{ company_name }}{% endblock %}
+{% block meta_description %}Kontakta G-Son Allservice AB för frågor, bokning eller offertförfrågan i Uddevalla med omnejd.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Kontakt</p>
+    <h1>Hör av dig så återkommer vi med ett tydligt nästa steg</h1>
+    <p class="lead">Kontaktformuläret passar för frågor, bokning och första kontakt inför ett uppdrag. För mer detaljerade förfrågningar kan du också använda offertformuläret.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-grid">
+    <div class="info-panel">
+      <h2>Kontaktuppgifter</h2>
+      {% for person in contacts %}
+        <div class="contact-person">
+          <p><strong>{{ person.name }}</strong></p>
+          <p>Telefon: <a href="tel:{{ person.phone|replace(' ', '') }}">{{ person.phone }}</a></p>
+          <p>E-post: <a href="mailto:{{ person.email }}">{{ person.email }}</a></p>
+        </div>
+      {% endfor %}
+      <p><strong>Verksamhetsområde:</strong> {{ service_area }}</p>
+      <p><strong>Vi arbetar i dessa områden:</strong> {{ locations|join(', ') }}</p>
+      <div class="map-placeholder">
+        <h3>Plats för karta</h3>
+        <p>Här kan senare en inbäddad karta eller tydligare områdespresentation läggas till.</p>
+      </div>
+    </div>
+
+    <form class="contact-form" method="post" novalidate>
+      <input class="honeypot" type="text" name="website" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="name">Namn</label>
+          <input id="name" name="name" type="text" value="{{ form_data.name }}" required>
+          {% if errors.name %}<small class="error-text">{{ errors.name }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="phone">Telefon</label>
+          <input id="phone" name="phone" type="tel" value="{{ form_data.phone }}" required>
+          {% if errors.phone %}<small class="error-text">{{ errors.phone }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="email">E-post</label>
+          <input id="email" name="email" type="email" value="{{ form_data.email }}" required>
+          {% if errors.email %}<small class="error-text">{{ errors.email }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="subject">Ämne</label>
+          <input id="subject" name="subject" type="text" value="{{ form_data.subject }}" required>
+          {% if errors.subject %}<small class="error-text">{{ errors.subject }}</small>{% endif %}
+        </div>
+        <div class="form-field">
+          <label for="reason">Typ av ärende</label>
+          <select id="reason" name="reason">
+            {% for option in contact_reasons %}
+              <option value="{{ option }}" {% if form_data.reason == option %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+          {% if errors.reason %}<small class="error-text">{{ errors.reason }}</small>{% endif %}
+        </div>
+        <div class="form-field form-field-full">
+          <label for="message">Meddelande</label>
+          <textarea id="message" name="message" rows="6" required>{{ form_data.message }}</textarea>
+          {% if errors.message %}<small class="error-text">{{ errors.message }}</small>{% endif %}
+        </div>
+      </div>
+      <button class="button" type="submit">Skicka meddelande</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

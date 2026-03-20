@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Tack | {{ company_name }}{% endblock %}
+{% block meta_description %}Tack för din förfrågan till G-Son Allservice AB. Vi återkommer så snart vi kan.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Tack</p>
+    <h1>Din förfrågan är mottagen</h1>
+    <p class="lead">
+      {% if form_type == 'offert' %}
+        Tack för din offertförfrågan. Vi går igenom uppgifterna och återkommer så snart vi kan.
+      {% else %}
+        Tack för ditt meddelande. Vi återkommer så snart vi kan med ett tydligt nästa steg.
+      {% endif %}
+    </p>
+    <div class="cta-row">
+      <a class="button" href="{{ url_for('index') }}">Till startsidan</a>
+      <a class="button button-secondary" href="{{ url_for('services_page') }}">Se tjänster</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

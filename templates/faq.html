@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Vanliga frågor | {{ company_name }}{% endblock %}
+{% block meta_description %}Vanliga frågor om G-Son Allservice AB, våra tjänster, arbetsområde och hur offertförfrågningar fungerar i Uddevalla med omnejd.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Vanliga frågor</p>
+    <h1>Svar på det kunder ofta vill veta</h1>
+    <p class="lead">Här har vi samlat vanliga frågor om tjänster, arbetsområde, offertflöde och hur ett samarbete vanligtvis går till.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container faq-list">
+    {% for item in faq_items %}
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>{{ item.question }}</span>
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          <p>{{ item.answer }}</p>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% with
+  title="Hittar du inte svaret du söker?",
+  text="Kontakta oss direkt så hjälper vi dig vidare utifrån ditt uppdrag eller din fråga.",
+  primary_url=url_for('contact'),
+  primary_label="Kontakta oss",
+  secondary_url=url_for('quote'),
+  secondary_label="Begär offert"
+%}
+  {% include "partials/cta_banner.html" %}
+{% endwith %}
+{% endblock %}

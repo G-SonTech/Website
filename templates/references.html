@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Referenser | {{ company_name }}{% endblock %}
+{% block meta_description %}Se exempel på tidigare typer av uppdrag som G-Son Allservice AB utfört i Uddevalla med omnejd för privatpersoner, företag och fastigheter.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Referenser</p>
+    <h1>Exempel på uppdrag vi hjälper till med</h1>
+    <p class="lead">Här visas realistiska exempel på uppdragstyper som speglar hur vi arbetar med service, underhåll och praktisk hjälp i olika miljöer.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container filter-row">
+    <span class="filter-pill">privat</span>
+    <span class="filter-pill">företag</span>
+    <span class="filter-pill">fastighet</span>
+    <span class="filter-pill">utomhus</span>
+    <span class="filter-pill">underhåll</span>
+  </div>
+  <div class="container card-grid">
+    {% for reference in references %}
+      <article class="card">
+        <p class="card-tag">{{ reference.category }}</p>
+        <h2>{{ reference.title }}</h2>
+        <p><strong>Ort:</strong> {{ reference.location }}</p>
+        <p><strong>Typ av uppdrag:</strong> {{ reference.assignment_type }}</p>
+        <p>{{ reference.description }}</p>
+        <p class="muted"><strong>Resultat:</strong> {{ reference.result }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% with
+  title="Har du ett liknande uppdrag?",
+  text="Skicka en offertförfrågan så återkommer vi med frågor, upplägg och nästa steg.",
+  primary_url=url_for('quote'),
+  primary_label="Begär offert",
+  secondary_url=url_for('contact'),
+  secondary_label="Kontakta oss"
+%}
+  {% include "partials/cta_banner.html" %}
+{% endwith %}
+{% endblock %}

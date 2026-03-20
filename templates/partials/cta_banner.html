@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="container cta-banner">
+    <div>
+      <p class="eyebrow">Nästa steg</p>
+      <h2>{{ title }}</h2>
+      <p>{{ text }}</p>
+    </div>
+    <div class="cta-row">
+      <a class="button" href="{{ primary_url }}">{{ primary_label }}</a>
+      {% if secondary_url and secondary_label %}
+        <a class="button button-secondary" href="{{ secondary_url }}">{{ secondary_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
