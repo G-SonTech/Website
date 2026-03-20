@@ -3,12 +3,16 @@
   functions = "functions"
   publish = "static"
 
+[functions]
+  directory = "functions"
+  included_files = ["templates/**", "data/**"]
+
 [[redirects]]
   from = "/static/*"
-  to = "/static/:splat"
+  to = "/:splat"
   status = 200
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/app:splat"
+  to = "/.netlify/functions/app/:splat"
   status = 200
