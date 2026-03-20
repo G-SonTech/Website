@@ -1,0 +1,12 @@
+[build]
+  command = "pip install -r requirements.txt && python app.py"
+  publish = "build"
+
+[build.environment]
+  FLASK_ENV = "production"
+
+[deploy]
+  provider = "github"
+  repo = "G-SonTech/Website"
+  branch = "main"
+  functions = "functions"
